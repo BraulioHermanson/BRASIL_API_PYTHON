@@ -13,7 +13,8 @@ print(resposta_ddd.json())
 df_ddd_21 = pd.DataFrame(resposta_ddd.json()).assign(ddd=21)
 print(df_ddd_21)
 
-varios ddd
+# varios ddd
+
 for ddd in range(11,22):
     resposta = requests.get("".join([URL_DDD, str(ddd)]))
     print(f"DDD: {ddd} - Status code: {resposta.status_code}")

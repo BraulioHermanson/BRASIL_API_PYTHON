@@ -22,4 +22,5 @@ resposta_busca_limite = requests.get(URL_LIMITE)
 
 #TODO Criar dataframe
 df_busca = pd.DataFrame(resposta_busca.json()["seriess"])
-print(df_busca.head())
+# print(df_busca.head())
+print(df_busca[df_busca["title"].str.contains("dollar", case=False)])

@@ -23,4 +23,13 @@ resposta_busca_limite = requests.get(URL_LIMITE)
 #TODO Criar dataframe
 df_busca = pd.DataFrame(resposta_busca.json()["seriess"])
 # print(df_busca.head())
-print(df_busca[df_busca["title"].str.contains("dollar", case=False)])
+# print(df_busca[df_busca["title"].str.contains("dollar", case=False)])
+
+
+SERIE_DOLLAR = "DEXBZUS"
+
+URL_SERIE_DOLLAR = f"https://api.stlouisfed.org/fred/series/observations?series_id={SERIE_DOLLAR}&api_key={key}&file_type=json"
+resposta_dollar = requests.get(URL_SERIE_DOLLAR)
+# resposta_dollar.status_code
+df_dollar = pd.DataFrame(resposta_dollar.json()["observations"])
+print(df_dollar.head())

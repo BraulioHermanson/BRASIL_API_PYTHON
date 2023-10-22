@@ -32,4 +32,19 @@ URL_SERIE_DOLLAR = f"https://api.stlouisfed.org/fred/series/observations?series_
 resposta_dollar = requests.get(URL_SERIE_DOLLAR)
 # resposta_dollar.status_code
 df_dollar = pd.DataFrame(resposta_dollar.json()["observations"])
+
+df_dollar = df_dollar.drop(columns=["realtime_start", "realtime_end"])
+
+# converter a coluna date para datetime
+df_dollar["date"] = pd.to_datetime(df_dollar["date"])
+
+# substituindo os valores "." por NaN
+df_dollar["value"] = df_dollar["value"].replace(".", float("NaN"))
+
+# converter a coluna value para float
+df_dollar["value"] = df_dollar["value"].astype(float)
+
+# colocar a coluna date como index
+df_dollar = df_dollar.set_index("date")
+
 print(df_dollar.head())
